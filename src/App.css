@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  margin: auto;
+}
+.card{
+ width: 250px;
+ height: 200px;
 }
 
 .App-logo {
@@ -35,4 +40,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

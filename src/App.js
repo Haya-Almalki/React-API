@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Coins from './component/Coins';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [coin, setCoin] = useState([])
+
+  useEffect(() => {
+    const fetchCoinData = async () => {
+      const request = await fetch('https://api.coincap.io/v2/assets');
+      const info = await request.json();
+
+      setCoin(info.data.slice(0, 10));
+
+    };
+    fetchCoinData();
+  }, []);
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="display-4 mt-3 mb-4 ">Cryptocurrency</h1>
+      <div className='row d-flex justify-content-center align-items-center container'>
+        {coin && coin.length > 0 && coin.map((coinObj) => (
+          <Coins name={coinObj.name} price={coinObj.priceUsd} symbol={coinObj.symbol.toLowerCase()} />
+        )
+        )}
+      </div>
     </div>
   );
 }
