@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <h1 className="display-4 mt-3 mb-4 ">Cryptocurrency</h1>
       <div className='row d-flex justify-content-center align-items-center container'>
-        {coin && coin.length > 0 && coin.map((coinObj) => (
+        {coin.map((coinObj) => (
           <Coins name={coinObj.name} price={coinObj.priceUsd} symbol={coinObj.symbol.toLowerCase()} />
         )
         )}
